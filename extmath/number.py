@@ -75,13 +75,6 @@ class Fraction:
 		self.n = n
 		self.d = d
 	
-	# string representation of fraction
-	def strValue(self):
-		if self.d == 0:
-			return str(self.n)
-		else:
-			return str(self.n) + "/" + str(self.d)
-	
 	# float value of fraction
 	def floatValue(self):
 		return float(self.n) / self.d
@@ -115,3 +108,10 @@ class Fraction:
 	# division between two fractions	
 	def __div__(self, other):
 		return self * other.inverse()
+	
+	# string representation of fraction
+	def __str__(self):
+		if self.d == 0:
+			return str(self.n)
+		else:
+			return str(self.n) + "/" + str(self.d)
