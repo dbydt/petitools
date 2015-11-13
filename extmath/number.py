@@ -68,4 +68,50 @@ def gcd(m, n):
 	if n == 0:
 		return m
 	return gcd(n, m % n)
+
+# fraction object that supports basic operations
+class Fraction:
+	def __init__(self, n, d=1):
+		self.n = n
+		self.d = d
 	
+	# string representation of fraction
+	def strValue(self):
+		if self.d == 0:
+			return str(self.n)
+		else:
+			return str(self.n) + "/" + str(self.d)
+	
+	# float value of fraction
+	def floatValue(self):
+		return float(self.n) / self.d
+	
+	# inverse of fraction	
+	def inverse(self):
+		return Fraction(self.d, self.n)
+	
+	# negated fraction	
+	def negate(self):
+		return Fraction(-self.n, self.d)
+	
+	# addition between two fractions
+	def __add__(self, other):
+		n = self.n * other.d + self.d * other.n
+		d = self.d * other.d
+		g = gcd(n, d)
+		return Fraction(n / g, d / g)
+	
+	# subtraction between two fractions
+	def __sub__(self, other):
+		return self + other.negate()
+	
+	# multiplication between two fractions
+	def __mul__(self, other):
+		n = self.n * other.n
+		d = self.d * other.d
+		g = gcd(n, d)
+		return Fraction(n / g, d / g)
+	
+	# division between two fractions	
+	def __div__(self, other):
+		return self * other.inverse()
