@@ -41,6 +41,34 @@ def prime_list(n):
 			p.append(x)
 	return p
 
+# generates primes using sieve method
+def primes_list_sieve(n):
+	p = []
+	list = []
+	
+	# generate list of "True"
+	j = 0
+	while j < n:
+		list.append(True)
+		j += 1
+	
+	# cancel multiples of primes; ascending
+	for i in range(2, int(sqrt(n))):
+		if list[i]:
+			for j in range(i**2, n, i):
+				list[j] = False
+	
+	# generate list of numbers from boolean list
+	i = 0
+	while i < len(list):
+		if list[i]:
+			p.append(i)
+		i += 1
+	
+	# return list (without 0 and 1)
+	return p[2:]
+
+
 # returns the prime factorization of a number
 def prime_factors(n):
 	p = []
