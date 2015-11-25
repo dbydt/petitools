@@ -97,47 +97,47 @@ def gcd(m, n):
 		return m
 	return gcd(n, m % n)
 
-# fraction object that supports basic operations
+# RationalNumber object that supports basic operations
 class RationalNumber:
 	def __init__(self, n, d=1):
 		self.n = n
 		self.d = d
 	
-	# float value of fraction
+	# float value of RationalNumber
 	def floatValue(self):
 		return float(self.n) / self.d
 	
-	# inverse of fraction	
+	# inverse of RationalNumber	
 	def inverse(self):
-		return Fraction(self.d, self.n)
+		return RationalNumber(self.d, self.n)
 	
-	# negated fraction	
+	# negated RationalNumber	
 	def negate(self):
-		return Fraction(-self.n, self.d)
+		return RationalNumber(-self.n, self.d)
 	
-	# addition between two fractions
+	# addition between two RationalNumbers
 	def __add__(self, other):
 		n = self.n * other.d + self.d * other.n
 		d = self.d * other.d
 		g = gcd(n, d)
-		return Fraction(n / g, d / g)
+		return RationalNumber(n / g, d / g)
 	
-	# subtraction between two fractions
+	# subtraction between two RationalNumbers
 	def __sub__(self, other):
 		return self + other.negate()
 	
-	# multiplication between two fractions
+	# multiplication between two RationalNumbers
 	def __mul__(self, other):
 		n = self.n * other.n
 		d = self.d * other.d
 		g = gcd(n, d)
-		return Fraction(n / g, d / g)
+		return RationalNumber(n / g, d / g)
 	
-	# division between two fractions	
+	# division between two RationalNumbers	
 	def __div__(self, other):
 		return self * other.inverse()
 	
-	# string representation of fraction
+	# string representation of RationalNumber
 	def __str__(self):
 		if self.d == 0:
 			return str(self.n)
